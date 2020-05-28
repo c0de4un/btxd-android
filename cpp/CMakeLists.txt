@@ -42,13 +42,7 @@ set ( BTXD_SOURCES "game/BTXDAndroid.cpp" )
 # LIBRARIES
 # =================================================================================
 
-# Add Android Log Library
-find_library( log-lib log )
-
-# btEngine
-add_definitions ( -DBT_DEBUG=1 )
-add_definitions ( -DDEBUG=1 )
-add_subdirectory ( "engine/btSDK" )
+include ( "cmake/libs.android.cmake" )
 
 # =================================================================================
 # BUILD

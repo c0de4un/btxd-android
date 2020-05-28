@@ -4,6 +4,9 @@ res/
 # engine
 cpp/engine/
 
+# libs
+libs/
+
 # Built application files
 *.apk
 *.aar
