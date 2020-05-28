@@ -1,3 +1,9 @@
+# Res
+res/
+
+# engine
+cpp/engine/
+
 # Built application files
 *.apk
 *.aar
@@ -83,3 +89,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+ic_launcher-playstore.png
