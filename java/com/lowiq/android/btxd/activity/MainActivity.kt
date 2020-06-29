@@ -42,6 +42,7 @@ package com.lowiq.android.btxd.activity
 // ===========================================================
 
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -87,15 +88,24 @@ class MainActivity : AppCompatActivity()
         //Set Link to this Activity in NativeUtil
         NativeUtil.Init( this )
 
-        //Set FullScreen
-        requestWindowFeature( Window.FEATURE_NO_TITLE )
-        window.setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN )
+        //requestWindowFeature( Window.FEATURE_NO_TITLE )
+        //window.setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN )
 
         //Create GLRender with Application Context
         if ( mGLESView == null ) mGLESView = GLESView( application )
 
         //Set ContentView
         setContentView( mGLESView )
+
+        // Get Top-Level Decor-View & Set FullScreen Mode: Immersive (for Games)
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_IMMERSIVE or
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+            View.SYSTEM_UI_FLAG_LOW_PROFILE or
+            View.SYSTEM_UI_FLAG_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     }
 
     override fun onPause( )

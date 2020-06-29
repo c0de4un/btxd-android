@@ -1,6 +1,6 @@
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 #
-# BattleTanksXD.Android
+# BattleTanksXD.Core
 #
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -15,13 +15,13 @@ cmake_minimum_required(VERSION 3.5)
 # =================================================================================
 
 # Project Name
-set ( PROJECT_NAME "BattleTanksXD.Android" )
+set ( PROJECT_NAME "BattleTanksXD.Core" )
 
 # Project Version
 set ( PROJECT_VERSION 0.0.1 )
 
 # Project Description
-set ( PROJECT_DESCRIPTION "BattleTanksXD for Android" )
+set ( PROJECT_DESCRIPTION "BattleTanksXD Core-Module." )
 
 # Configure Project
 project ( PROJECT_NAME VERSION ${PROJECT_VERSION} DESCRIPTION PROJECT_DESCRIPTION LANGUAGES C CXX )
@@ -30,41 +30,27 @@ project ( PROJECT_NAME VERSION ${PROJECT_VERSION} DESCRIPTION PROJECT_DESCRIPTIO
 # HEADERS
 # =================================================================================
 
-set ( BTXD_HEADERS "game/android/BTXDAndroid.hpp" )
+set ( BTXD_CORE_HEADERS
+        "game/BTXDGame.hpp" )
 
 # =================================================================================
 # SOURCES
 # =================================================================================
 
-set ( BTXD_SOURCES "game/android/BTXDAndroid.cpp" )
-
-# =================================================================================
-# LIBRARIES
-# =================================================================================
-
-include ( "cmake/libs.android.cmake" )
-
-# =================================================================================
-# MODULES
-# =================================================================================
-
-# CORE
-add_subdirectory ( "game/core" )
+set ( BTXD_CORE_SOURCES
+        "game/BTXDGame.cpp" )
 
 # =================================================================================
 # BUILD
 # =================================================================================
 
-# Create SHARED Library Object for Android
-add_library ( btxdandroid-lib SHARED ${BTXD_HEADERS} ${BTXD_SOURCES} )
+# Add STATIC Library Object
+add_library ( btxdGame_Core STATIC ${BTXD_CORE_HEADERS} ${BTXD_CORE_SOURCES} )
 
 # Include btEngine
-include_directories("engine/btSDK/public")
+include_directories("../../engine/btSDK/public")
 
-# Include BTXD.Core
-include_directories ( "game/core" )
-
-# Link SHARED Library Object
-target_link_libraries ( btxdandroid-lib btxdGame_Core ${log-lib} )
+# Link
+target_link_libraries ( btxdGame_Core btEngine )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

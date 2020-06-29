@@ -29,46 +29,66 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef BT_XD_ANDROID_HPP
-#define BT_XD_ANDROID_HPP
-
 // -----------------------------------------------------------
 
 // ===========================================================
 // INCLUDES
 // ===========================================================
 
-// Include JNI
-#include <jni.h>
+// HEADER
+#ifndef LOW_IQ_BTXD_CORE_GAME_HPP
+#include "BTXDGame.hpp"
+#endif // !LOW_IQ_BTXD_CORE_GAME_HPP
 
-// Android AssetManager
-#include <android/asset_manager.h>
-#include <android/asset_manager_jni.h>
-
-// DEBUG
-#if defined( BT_DEBUG ) || defined( DEBUG )
-
-// Include Android Log
-#include <android/log.h>
-
-// Include bt::android::AndroidLogger
-#ifndef BT_ANDROID_LOGGER_HPP
-#include <bt/android/metrics/AndroidLogger.hpp>
-#endif // !BT_ANDROID_LOGGER_HPP
-
+// Include bt::string
+#ifndef BT_STRING_HPP
+#include <bt/cfg/bt_string.hpp>
 #endif
-// DEBUG
+
+#if defined( BT_DEBUG ) || defined( DEBUG ) // DEBUG
+
+// Include bt::log
+#ifndef BT_CFG_LOG_HPP
+#include "../../../public/bt/cfg/bt_log.hpp"
+#endif // !BT_CFG_LOG_HPP
+
+// Include bt::assert
+#ifndef BT_CFG_ASSERT_HPP
+#include <bt/cfg/bt_assert.hpp>
+#endif // !BT_CFG_ASSERT_HPP
+
+#endif // DEBUG
 
 // ===========================================================
-// FORWARD-DECLARATIONS
+// lowiq::BTXDGame
 // ===========================================================
 
-// ===========================================================
-// DEFINES
-// ===========================================================
+namespace lowiq
+{
 
+    // -----------------------------------------------------------
 
+    // ===========================================================
+    // CONSTRUCTOR & DESTRUCTOR
+    // ===========================================================
+
+    BTXDGame::BTXDGame()
+        : Game()
+    {
+#if defined( BT_DEBUG ) || defined( DEBUG ) // DEBUG
+        bt_Log::Print( u8"BTXDGame constructor", bt_ELogLevel::Info );
+#endif // DEBUG
+    }
+
+    BTXDGame::~BTXDGame()
+    {
+#if defined( BT_DEBUG ) || defined( DEBUG ) // DEBUG
+        bt_Log::Print( u8"BTXDGame destructor", bt_ELogLevel::Info );
+#endif // DEBUG
+    }
+
+    // -----------------------------------------------------------
+
+} /// lowiq
 
 // -----------------------------------------------------------
-
-#endif // !BT_XD_ANDROID_HPP

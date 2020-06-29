@@ -4,8 +4,11 @@ res/
 # engine
 cpp/engine/
 
-# libs
-libs/
+# Libs
+cpp/libs
+cpp/libs/
+cpp/libs/zlib
+cpp/libs/zlib/zlib
 
 # Built application files
 *.apk

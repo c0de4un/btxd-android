@@ -29,108 +29,94 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef BT_XD_ANDROID_HPP
+#define BT_XD_ANDROID_HPP
+
 // -----------------------------------------------------------
 
 // ===========================================================
 // INCLUDES
 // ===========================================================
 
-// HEADER
-#ifndef BT_XD_ANDROID_HPP
-#include "BTXDAndroid.hpp"
-#endif // !BT_XD_ANDROID_HPP
+// Debug
+#define BT_DEBUG
+
+// Include JNI
+#include <jni.h>
+
+// Android AssetManager
+#include <android/asset_manager.h>
+#include <android/asset_manager_jni.h>
+
+// Include ECS
+#ifndef BT_ECS_HPP
+#include <bt/ecs/ecs.hpp>
+#endif // !BT_ECS_HPP
+
+// Include bt::core::ArcadeEngine
+#ifndef BT_CORE_ARCADE_ENGINE_HPP
+#include <bt/core/engine/ArcadeEngine.hpp>
+#endif // !BT_CORE_ARCADE_ENGINE_HPP
+
+// Include lowiq::BTXDGame
+#ifndef LOW_IQ_BTXD_CORE_GAME_HPP
+#include "../core/game/BTXDGame.hpp"
+#endif // !LOW_IQ_BTXD_CORE_GAME_HPP
+
+// Include bt::android::AndroidApplication
+#ifndef BT_ANDROID_APPLICATION_HPP
+#include <bt/android/app/AndroidApp.hpp>
+#endif // !BT_ANDROID_APPLICATION_HPP
+
+// Include bt::android::AndroidJNIAdapter
+#ifndef BT_ANDROID_JNI_ADAPTER_HPP
+#include <bt/android/jni/AndroidJNIAdapter.hpp>
+#endif // !BT_ANDROID_JNI_ADAPTER_HPP
+
+// Include bt::android::AndroidJNICache
+#ifndef BT_ANDROID_JNI_CACHE_HPP
+#include <bt/android/jni/AndroidJNICache.hpp>
+#endif // !BT_ANDROID_JNI_CACHE_HPP
+
+// Include bt::java::JNICache
+#ifndef BT_JAVA_JNI_CACHE_HPP
+#include <bt/java/jni/JNICache.hpp>
+#endif // !BT_JAVA_JNI_CACHE_HPP
+
+// Include bt::java::JNIAdapter
+#ifndef BT_JAVA_JNI_ADAPTER_HPP
+#include <bt/java/jni/JNIAdapter.hpp>
+#endif // !BT_JAVA_JNI_ADAPTER_HPP
+
+// Include bt::android::AndroidGraphics
+#ifndef BT_ANDROID_GRAPHICS_HPP
+#include <bt/android/graphics/AndroidGraphics.hpp>
+#endif // !BT_ANDROID_GRAPHICS_HPP
+
+// Include bt::gl::GLRenderManager
+#ifndef BT_GL_RENDER_MANAGER_HPP
+#include <bt/gl/render/GLRendererManager.hpp>
+#endif // !BT_GL_RENDER_MANAGER_HPP
 
 // DEBUG
 #if defined( BT_DEBUG ) || defined( DEBUG )
 
-// Inlude Android Log
+// Include Android Log
 #include <android/log.h>
 
 // Include bt::android::AndroidLogger
 #ifndef BT_ANDROID_LOGGER_HPP
 #include <bt/android/metrics/AndroidLogger.hpp>
 #endif // !BT_ANDROID_LOGGER_HPP
-#include <bt/android/metrics/AndroidLogger.hpp>
+
 #endif
 // DEBUG
 
 // ===========================================================
-// IMPLEMENTATIONS
+// TYPES
 // ===========================================================
 
-extern "C"
-{
-
-    JNIEXPORT void JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_onRestoreState(JNIEnv *env, jobject thiz, jstring saved_data)
-    {// @TODO BTXDAndroid::onRestoreState
-#ifdef DEBUG
-        bt_Log::Print( "BTXDAndroid::onRestoreState", bt_ELogLevel::Info );
-#endif
-    }
-
-    JNIEXPORT void JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_onPause(JNIEnv *env, jobject thiz)
-    {// @TODO BTXDAndroid::onPause
-#ifdef DEBUG
-        bt_Log::Print( "BTXDAndroid::onPause", bt_ELogLevel::Info );
-#endif
-    }
-
-    JNIEXPORT jstring JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_onSaveState(JNIEnv *env, jobject thiz)
-    {// @TODO BTXDAndroid::onSaveState
-#ifdef DEBUG
-        bt_Log::Print( "BTXDAndroid::onSaveState", bt_ELogLevel::Info );
-#endif
-        // State Data
-        jstring stateData = nullptr;
-
-        // Save small game data
-
-        // Return State Data
-        return (stateData);
-    }
-
-    JNIEXPORT void JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_onResume(JNIEnv *env, jobject thiz)
-    {// @TODO BTXDAndroid::onResume
-#ifdef DEBUG
-        if ( !bt_Log::isInitialized() )
-            bt_Log::Initialize( new bt_AndroidLogger( "BattleTanksXD" ) );
-
-        bt_Log::Print( "BTXDAndroid::onResume", bt_ELogLevel::Info );
-#endif
-    }
-
-    JNIEXPORT void JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_onStop(JNIEnv *env, jobject thiz)
-    {// @TODO BTXDAndroid::onStop
-#ifdef DEBUG
-        bt_Log::Print( "BTXDAndroid::onStop", bt_ELogLevel::Info );
-
-        bt_Log::Terminate();
-#endif
-
-    }
-
-    JNIEXPORT void JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_glInit(JNIEnv *env, jobject thiz, jint pWidth, jint pHeight)
-    {// @TODO BTXDAndroid::glInit
-#ifdef DEBUG
-        if ( !bt_Log::isInitialized() )
-            bt_Log::Initialize( new bt_AndroidLogger( "BattleTanksXD" ) );
-
-        bt_Log::Print( "BTXDAndroid::glInit", bt_ELogLevel::Info );
-#endif
-    }
-
-    JNIEXPORT void JNICALL
-    Java_com_lowiq_android_btxd_jni_NativeUtil_glStep(JNIEnv *env, jobject thiz)
-    {// @TODO BTXDAndroid::glStep
-
-    }
-
-};
 
 // -----------------------------------------------------------
+
+#endif // !BT_XD_ANDROID_HPP
